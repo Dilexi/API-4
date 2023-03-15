@@ -20,6 +20,12 @@
 ```python
   python main.py
 ```
+Чтобы загрузить фотографии из конкретного запуска, нужно передать функции `fetch_spacex_last_launch` ID запуска в аргументе --id при запуске скрипта:
+
+```python
+  python fetch_spacex_images.py --id launch_id
+```
+где launch_id - ID запуска, из которого нужно загрузить фотографии. Если аргумент --launch не указан, будут загружены фотографии из последнего запуска.
 
 ## Переменные окружения
 Часть настроек проекта берётся из переменных окружения.
@@ -37,6 +43,7 @@ TG_CHAT_ID = "@chat_id"
 FOLDER_SPACEX = "SpaceX"
 FOLDER_NASA = "Nasa"
 FOLDER_EPIC = "Epic"
+PUBLISH_DELAY = "60"
 
 ```
 
