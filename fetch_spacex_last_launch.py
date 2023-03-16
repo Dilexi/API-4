@@ -17,13 +17,13 @@ def fetch_spacex_last_launch(folder_name, launch_id=None):
     response.raise_for_status()
     
     if launch_id:
-        urls_photo=response.json()['links']['flickr']['original']
+        photo_urls=response.json()['links']['flickr']['original']
     else:
         for link_photo_spasex in response.json():
             if link_photo_spasex["links"]['flickr'] and link_photo_spasex["links"]['flickr']["original"]:
-                urls_photo=link_photo_spasex["links"]['flickr']["original"]
+                photo_urls=link_photo_spasex["links"]['flickr']["original"]
 
-    for number, link in enumerate(urls_photo):
+    for number, link in enumerate(photo_urls):
         file_name = f"spacex_{number}.jpg"
         path = os.path.join(folder_name, file_name)
         download_image(link, path)
