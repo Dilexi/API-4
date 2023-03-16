@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from download_image import download_image
 
 
-def fetch_spacex_last_launch(folder_name, launch_id=None):
+def get_spacex_photo_links(launch_id=None):
     if launch_id:
         image_link = f"https://api.spacexdata.com/v5/launches/{launch_id}"
     else:
@@ -22,13 +22,21 @@ def fetch_spacex_last_launch(folder_name, launch_id=None):
         for link_photo_spasex in response.json():
             if link_photo_spasex["links"]['flickr'] and link_photo_spasex["links"]['flickr']["original"]:
                 photo_urls=link_photo_spasex["links"]['flickr']["original"]
+    return photo_urls
 
+
+def save_photos_to_folder(photo_urls, folder_name):
     for number, link in enumerate(photo_urls):
         file_name = f"spacex_{number}.jpg"
         path = os.path.join(folder_name, file_name)
         download_image(link, path)
 
 
+def fetch_spacex_last_launch(folder_name, launch_id=None):
+    links = get_spacex_photo_links(launch_id)
+    save_photos_to_folder(links, folder_name)
+    
+ 
 def main():
     load_dotenv()
     parser = argparse.ArgumentParser(
