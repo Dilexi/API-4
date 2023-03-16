@@ -10,7 +10,7 @@ from download_image import download_image
 
 def get_epic_nasa_images(folder_name, nasa_api_key):
     link_epic = "https://api.nasa.gov/EPIC/api/natural/image"
-    links_count = 1
+    links_count = int(input("Введите необходимо колличество фотографий: "))
     params = {
         "api_key": nasa_api_key,
         "count": links_count
@@ -38,7 +38,7 @@ def main():
     nasa_api_key = os.environ['NASA_API']
     folder_name = os.environ['FOLDER_EPIC']
     Path(folder_name).mkdir(parents=True, exist_ok=True)
-    get_epic_nasa_images(folder_name, api_key)
+    get_epic_nasa_images(folder_name, nasa_api_key)
 
 
 if __name__=="__main__":
