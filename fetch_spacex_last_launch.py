@@ -41,7 +41,7 @@ def main():
         help='Укажите ID запуска SpaceX, с которого можно загрузить фотографии.'
     )
     args = parser.parse_args()
-    folder_name = os.environ['FOLDER_SPACEX']
+    folder_name = os.environ.get("FOLDER_SPACEX", "spacex_photos")
     Path(folder_name).mkdir(parents=True, exist_ok=True)
     fetch_spacex_last_launch(folder_name, args.launch_id)
 
