@@ -28,12 +28,17 @@ def get_nasa_images(folder_nasa, nasa_api_key, folder_name):
     response.raise_for_status()
     nasa_images = response.json()
     for image_nasa in nasa_images:
-        if image_nasa["url"]:
-            nasa_link_image = image_nasa["url"]
+        if image_nasa.get("media_type") == "image":
+            if image_nasa.get("hdurl"):
+                nasa_link_image = image_nasa["hdurl"]
+            else:
+                nasa_link_image = image_nasa["url"]
             print(nasa_link_image)
             extension, file_name = extract_extension_from_link(nasa_link_image)
             path = os.path.join(folder_name, f'{file_name}{extension}')
             download_image(nasa_link_image, path)
+        else:
+            continue
 
 
 def main():
