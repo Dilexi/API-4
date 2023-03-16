@@ -23,8 +23,9 @@ def main():
         files = listdir(folders)
         random.shuffle(files)
         for file in files:
-            bot.send_document(chat_id=TG_CHAT_ID,
-                    document=open(f'{folders}/{file}', 'rb'))
+            filepath = os.path.join(folder, file)
+            with open(filepath, 'rb') as f:
+                bot.send_document(chat_id=TG_CHAT_ID, document=f)
             sleep(PUBLISH_DELAY)
 
 
