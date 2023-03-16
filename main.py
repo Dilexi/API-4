@@ -3,6 +3,7 @@ import telegram
 import random
 from os import listdir
 from time import sleep
+from telegram.error import NetworkError
 
 
 def main():
@@ -14,19 +15,23 @@ def main():
     PUBLISH_DELAY = int(os.environ.get('PUBLISH_DELAY', 14400))
     bot = telegram.Bot(token=TG_TOKEN)
     while True:
-        folders = [
-            FOLDER_SPACEX,
-            FOLDER_NASA,
-            FOLDER_EPIC
-        ]
-        folders = random.choice(folders)
-        files = listdir(folders)
-        random.shuffle(files)
-        for file in files:
-            filepath = os.path.join(folder, file)
-            with open(filepath, 'rb') as f:
-                bot.send_document(chat_id=TG_CHAT_ID, document=f)
-            sleep(PUBLISH_DELAY)
+        try:
+            folders = [
+                FOLDER_SPACEX,
+                FOLDER_NASA_APOD,
+                FOLDER_EPIC
+            ]
+            folder = random.choice(folders)
+            files = listdir(folder)
+            random.shuffle(files)
+            for file in files:
+                filepath = os.path.join(folder, file)
+                with open(filepath, 'rb') as f:
+                    bot.send_document(chat_id=TG_CHAT_ID, document=f)
+                sleep(PUBLISH_DELAY)
+        except NetworkError:
+            print("Ошибка сети. Повторная попытка через 20 секунд...")
+            sleep(20)
 
 
 if __name__ == "__main__":
