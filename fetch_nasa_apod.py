@@ -9,9 +9,9 @@ from download_image import download_image
 
 
 def extract_extension_from_link(link):
-    link_unquote = unquote(link)
-    link_parse =  urlparse(link_unquote)
-    path, fullname = os.path.split(link_parse.path)
+    decoded_link = unquote(link)
+    parsed_link = urlparse(decoded_link)
+    path, fullname = os.path.split(parsed_link.path)
     file_extension_path = os.path.splitext(fullname)
     file_name, extension = file_extension_path
     return extension, file_name
