@@ -35,7 +35,7 @@ def get_epic_nasa_images(folder_name, nasa_api_key):
 
 def main():
     load_dotenv()
-    nasa_api_key = os.environ['NASA_API']
+    nasa_api_key = os.environ['NASA_TOKEN']
     folder_name = os.environ.get("FOLDER_EPIC", "epic_photos")
     Path(folder_name).mkdir(parents=True, exist_ok=True)
     get_epic_nasa_images(folder_name, nasa_api_key)
