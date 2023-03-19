@@ -19,9 +19,9 @@ def get_spacex_photo_links(launch_id=None):
     if launch_id:
         photo_urls=response.json()['links']['flickr']['original']
     else:
-        for link_photo_spasex in response.json():
-            if link_photo_spasex["links"]['flickr'] and link_photo_spasex["links"]['flickr']["original"]:
-                photo_urls=link_photo_spasex["links"]['flickr']["original"]
+        for link_photo_spaсex in response.json():
+            if link_photo_spaсex["links"]['flickr'] and link_photo_spaсex["links"]['flickr']["original"]:
+                photo_urls=link_photo_spaсex["links"]['flickr']["original"]
     return photo_urls
 
 
