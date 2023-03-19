@@ -8,9 +8,8 @@ from dotenv import load_dotenv
 from download_image import download_image
 
 
-def get_epic_nasa_images(folder_name, nasa_api_key):
+def get_epic_nasa_images(folder_name, nasa_api_key, links_count):
     link_epic = "https://api.nasa.gov/EPIC/api/natural/image"
-    links_count = int(input("Введите необходимо колличество фотографий: "))
     params = {
         "api_key": nasa_api_key,
         "count": links_count
@@ -34,6 +33,7 @@ def get_epic_nasa_images(folder_name, nasa_api_key):
 
 
 def main():
+    links_count = int(input("Введите необходимо колличество фотографий: "))
     load_dotenv()
     nasa_api_key = os.environ['NASA_TOKEN']
     folder_name = os.environ.get("FOLDER_EPIC", "epic_photos")
