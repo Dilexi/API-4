@@ -17,9 +17,8 @@ def extract_extension_from_link(link):
     return extension, file_name
 
 
-def get_nasa_images(folder_nasa, nasa_api_key, folder_name):
+def get_nasa_images(nasa_api_key, folder_name, links_count):
     nasa_link_apod = "https://api.nasa.gov/planetary/apod"
-    links_count = int(input("Введите необходимо колличество фотографий: "))
     params = {
         "api_key": nasa_api_key,
         "count": links_count
@@ -42,6 +41,7 @@ def get_nasa_images(folder_nasa, nasa_api_key, folder_name):
 
 
 def main():
+    links_count = int(input("Введите необходимо колличество фотографий: "))
     load_dotenv()
     nasa_api_key = os.environ['NASA_TOKEN']
     folder_name = os.environ.get("FOLDER_NASA_APOD", "nasa_apod_photos")
