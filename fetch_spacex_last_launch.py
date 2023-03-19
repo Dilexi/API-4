@@ -40,7 +40,7 @@ def fetch_spacex_last_launch(folder_name, launch_id=None):
 def main():
     load_dotenv()
     parser = argparse.ArgumentParser(
-        description='Эта программа позволит вам загрузитть фотографии с запуска SpaceX.'
+        description='Эта программа позволит вам загрузить фотографии с запуска SpaceX.'
     )
     parser.add_argument(
         '--id',
