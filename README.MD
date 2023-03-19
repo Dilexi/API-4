@@ -36,7 +36,7 @@
 
 ```python
 
-API_KEY = "nasa-token"
+NASA_API_KEY = "nasa-token"
 TG_TOKEN = "bot-token"
 TG_CHAT_ID = "@chat_id"
 
@@ -47,7 +47,7 @@ PUBLISH_DELAY = "60"
 
 ```
 
-Получить токен `API_KEY` можно на сайте [NASA](https://api.nasa.gov/).
+Получить токен `NASA_API_KEY` можно на сайте [NASA](https://api.nasa.gov/).
 Получить токен `TELEGRAM_BOT_TOKEN` можно у отца ботов.
 В описании канала получите название и положите в переменную `TG_CHAT_ID`.
 
