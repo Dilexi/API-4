@@ -2,11 +2,13 @@ import os
 import telegram
 import random
 from os import listdir
+from dotenv import load_dotenv
 from time import sleep
 from telegram.error import NetworkError
 
 
 def main():
+    load_dotenv()
     tg_token = os.environ['TG_TOKEN']
     tg_chat_id = os.environ['TG_CHAT_ID']
     folder_spacex = os.environ.get("FOLDER_SPACEX", "spacex_photos")
