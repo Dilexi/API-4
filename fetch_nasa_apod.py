@@ -39,7 +39,7 @@ def get_nasa_images(nasa_api_key, folder_name, links_count):
 
 
 def main():
-    links_count = int(input("Введите необходимо колличество фотографий: "))
+    links_count = int(input("Введите необходимо количество фотографий: "))
     load_dotenv()
     nasa_api_key = os.environ['NASA_TOKEN']
     folder_name = os.environ.get("FOLDER_NASA_APOD", "nasa_apod_photos")
