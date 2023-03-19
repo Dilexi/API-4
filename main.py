@@ -7,19 +7,19 @@ from telegram.error import NetworkError
 
 
 def main():
-    TG_TOKEN = os.environ['TG_TOKEN']
-    TG_CHAT_ID = os.environ['TG_CHAT_ID']
-    FOLDER_SPACEX = os.environ.get("FOLDER_SPACEX", "spacex_photos")
-    FOLDER_NASA_APOD = os.environ.get("FOLDER_NASA_APOD", "nasa_apod_photos")
-    FOLDER_EPIC = os.environ.get("FOLDER_EPIC", "epic_photos")
-    PUBLISH_DELAY = int(os.environ.get('PUBLISH_DELAY', 14400))
-    bot = telegram.Bot(token=TG_TOKEN)
+    tg_token = os.environ['TG_TOKEN']
+    tg_chat_id = os.environ['TG_CHAT_ID']
+    folder_spacex = os.environ.get("FOLDER_SPACEX", "spacex_photos")
+    folder_nasa_apod = os.environ.get("FOLDER_NASA_APOD", "nasa_apod_photos")
+    folder_epic = os.environ.get("FOLDER_EPIC", "epic_photos")
+    publish_delay = int(os.environ.get('PUBLISH_DELAY', 14400))
+    bot = telegram.Bot(token=tg_token)
     while True:
         try:
             folders = [
-                FOLDER_SPACEX,
-                FOLDER_NASA_APOD,
-                FOLDER_EPIC
+                folder_spacex,
+                folder_nasa_apod,
+                folder_epic
             ]
             folder = random.choice(folders)
             files = listdir(folder)
@@ -27,8 +27,8 @@ def main():
             for file in files:
                 filepath = os.path.join(folder, file)
                 with open(filepath, 'rb') as f:
-                    bot.send_document(chat_id=TG_CHAT_ID, document=f)
-                sleep(PUBLISH_DELAY)
+                    bot.send_document(chat_id=tg_chat_id, document=f)
+                sleep(publish_delay)
         except NetworkError:
             print("Ошибка сети. Повторная попытка через 20 секунд...")
             sleep(20)
