@@ -36,8 +36,6 @@ def get_nasa_images(nasa_api_key, folder_name, links_count):
             extension, file_name = extract_extension_from_link(nasa_link_image)
             path = os.path.join(folder_name, f'{file_name}{extension}')
             download_image(nasa_link_image, path)
-        else:
-            continue
 
 
 def main():
