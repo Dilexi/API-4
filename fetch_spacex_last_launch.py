@@ -8,21 +8,30 @@ from dotenv import load_dotenv
 from download_image import download_image
 
 
-def get_spacex_photo_links(launch_id=None):
-    if launch_id:
-        image_link = f"https://api.spacexdata.com/v5/launches/{launch_id}"
-    else:
-        image_link = "https://api.spacexdata.com/v5/launches/"
+def get_photo_links_by_launch_id(launch_id):
+    image_link = f"https://api.spacexdata.com/v5/launches/{launch_id}"
     response = requests.get(image_link)
     response.raise_for_status()
-    
-    if launch_id:
-        photo_urls=response.json()['links']['flickr']['original']
-    else:
-        for link_photo_spaсex in response.json():
-            if link_photo_spaсex["links"]['flickr'] and link_photo_spaсex["links"]['flickr']["original"]:
-                photo_urls=link_photo_spaсex["links"]['flickr']["original"]
+    photo_urls = response.json()['links']['flickr']['original']
     return photo_urls
+
+
+def get_photo_links_last_launch():
+    image_link = "https://api.spacexdata.com/v5/launches/"
+    response = requests.get(image_link)
+    response.raise_for_status()
+    for launch_data in response.json():
+        if launch_data['links']['flickr'] and launch_data['links']['flickr']['original']:
+            photo_urls = launch_data['links']['flickr']['original']
+    return photo_urls
+
+
+def get_spacex_photo_links(launch_id=None):
+    if launch_id:
+        photo_links = get_photo_links_by_launch_id(launch_id)
+    else:
+        photo_links = get_photo_links_last_launch()
+    return photo_links
 
 
 def save_photos_to_folder(photo_urls, folder_name):
