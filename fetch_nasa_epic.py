@@ -1,4 +1,5 @@
 import os
+import argparse
 from datetime import datetime
 from pathlib import Path
 
@@ -33,12 +34,14 @@ def get_epic_nasa_images(folder_name, nasa_api_key, links_count):
 
 
 def main():
-    links_count = int(input("Введите необходимо количество фотографий: "))
+    parser = argparse.ArgumentParser(description='Загружает изображения NASA APOD')
+    parser.add_argument('count', type=int, help='Введите необходимо колличество фотографий:')
+    args = parser.parse_args()
     load_dotenv()
     nasa_api_key = os.environ['NASA_TOKEN']
     folder_name = os.environ.get("FOLDER_EPIC", "epic_photos")
     Path(folder_name).mkdir(parents=True, exist_ok=True)
-    get_epic_nasa_images(folder_name, nasa_api_key, links_count)
+    get_epic_nasa_images(folder_name, nasa_api_key, args.count)
 
 
 if __name__=="__main__":
