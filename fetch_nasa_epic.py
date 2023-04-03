@@ -34,7 +34,7 @@ def get_epic_nasa_images(folder_name, nasa_api_key, links_count):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Загружает изображения NASA APOD')
+    parser = argparse.ArgumentParser(description='Загружает изображения NASA')
     parser.add_argument('count', type=int, help='Введите необходимо колличество фотографий:')
     args = parser.parse_args()
     load_dotenv()
