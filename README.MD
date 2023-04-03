@@ -30,20 +30,20 @@
 ## Переменные окружения
 Часть настроек проекта берётся из переменных окружения.
 Переменные окружения - это переменные, значения которых присваиваются программе Python извне.
-Чтобы их определить, создайте файл `.env` рядом с `main.py` и запишите туда данные в таком формате: переменная=значение.
+Чтобы их определить, создайте файл `.env` рядом с `main.py` и запишите туда данные в таком формате: ПЕРЕМЕННАЯ=значение.
 
 Пример содержания файла `.env`:
 
 ```python
 
-nasa_api_key = "nasa-token"
-tg_token = "bot-token"
-tg_chat_id = "@chat_id"
+NASA_API_KEY = "nasa-token"
+TG_TOKEN = "bot-token"
+TG_CHAT_ID = "@chat_id"
 
-folder_spasex = "SpaceX"
-folder_nasa = "Nasa"
-folder_epic = "Epic"
-publish_delay = "60"
+FOLDER_SPACEX = "SpaceX"
+FOLDER_NASA = "Nasa"
+FOLDER_EPIC = "Epic"
+PUBLISH_DELAY = "60"
 
 ```
 
