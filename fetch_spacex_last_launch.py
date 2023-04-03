@@ -21,8 +21,9 @@ def get_photo_links_last_launch():
     response = requests.get(image_link)
     response.raise_for_status()
     for launch_data in response.json():
-        if launch_data['links']['flickr'] and launch_data['links']['flickr']['original']:
-            photo_urls = launch_data['links']['flickr']['original']
+        launch_data = launch_data['links']['flickr'] 
+        if launch_data and launch_data['original']:
+            photo_urls = launch_data['original']
     return photo_urls
 
 
