@@ -17,15 +17,15 @@ def main():
     publish_delay = int(os.environ.get('PUBLISH_DELAY', 14400))
     bot = telegram.Bot(token=tg_token)
     while True:
-        try:
-            folders = [
-                folder_spacex,
-                folder_nasa_apod,
-                folder_epic
-            ]
-            folder = random.choice(folders)
-            files = listdir(folder)
-            random.shuffle(files)
+        folders = [
+            folder_spacex,
+            folder_nasa_apod,
+            folder_epic
+        ]
+        folder = random.choice(folders)
+        files = listdir(folder)
+        random.shuffle(files)
+        try:            
             for file in files:
                 filepath = os.path.join(folder, file)
                 with open(filepath, 'rb') as f:
