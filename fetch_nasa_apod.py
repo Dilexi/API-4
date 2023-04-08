@@ -41,7 +41,7 @@ def get_nasa_images(nasa_api_key, folder_name, links_count):
 
 def main():
     parser = argparse.ArgumentParser(description='Загружает изображения NASA')
-    parser.add_argument('count', type=int, help='Введите необходимо колличество фотографий:')
+    parser.add_argument('count', type=int, help='Введите необходимо количество фотографий:')
     args = parser.parse_args()
     load_dotenv()
     nasa_api_key = os.environ['NASA_TOKEN']
