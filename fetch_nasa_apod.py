@@ -47,7 +47,7 @@ def main():
     nasa_api_key = os.environ['NASA_TOKEN']
     folder_name = os.environ.get("FOLDER_NASA_APOD", "nasa_apod_photos")
     Path(folder_name).mkdir(parents=True, exist_ok=True)
-    get_nasa_images(folder_name, nasa_api_key, args.count)
+    get_nasa_images(nasa_api_key, folder_name, args.count)
 
 
 if __name__=="__main__":
